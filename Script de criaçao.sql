@@ -8,10 +8,6 @@ create table jogador
 (id_jogador int primary key not null,
  nome varchar(80) not null);
  
-drop table if exists situacao; 
- create table situacao
- (id_situacao int primary key not null,
- descricao varchar(60) not null);
  
  drop table if exists campeonato;
  create table campeonato 
@@ -52,9 +48,10 @@ foreign key (fk_campeonato) references campeonato(id_campeonato)
 
 drop table if exists classificacao;
 create table classificacao
-(posicao int not null ,
+(posicao int ,
 quantidade_partidas tinyint not null,
-pontos tinyint not null,
+pontos tinyint ,
+fase varchar(50),
 num_derrotas tinyint not null,
 num_vitoria tinyint not null,
 num_empates tinyint not null,
@@ -76,7 +73,7 @@ foreign key (fk_campeonato) references campeonato(id_campeonato)
 
 drop table if exists historico_jogador;
 create table historico_jogador 
-(dt_contratacao date not null primary key,
+(dt_contratacao date not null ,
 dt_fimcontrato date not null,
 num_assistencia smallint not null,
 num_gols smallint not null,
@@ -84,13 +81,14 @@ num_jogos smallint not null,
 num_titulo smallint not null,
 foto text,
 fk_jogador int not null unique,
-foreign key (fk_jogador) references jogador(id_jogador)
+foreign key (fk_jogador) references jogador(id_jogador),
+primary key (fk_jogador)
 );
 
 drop table if exists caracteristica_jogador;
 create table caracteristica_jogador 
 (id_jogador int not null primary key unique ,
-valor_mercado decimal not null,
+valor_mercado varchar(60) not null,
 pais_nasc varchar(80) not null,
 dt_nasc date not null,
 posicao varchar(50) not null,
@@ -127,23 +125,28 @@ foreign key (id_jogador) references jogador(id_jogador),
 foreign key (id_titulo) references titulo(id_titulo)
 );
 
-drop table if exists situacao_jogador;
-create table situacao_jogador
-(data date not null,
-id_situacao int not null,
-id_jogador int not null,
-primary key (data, id_situacao, id_jogador),
-foreign key (id_situacao) references situacao(id_situacao),
-foreign key (id_jogador) references jogador(id_jogador)
-);
 
 drop table if exists nacionalidade;
 create table nacionalidade
 (id_nacionalidade int not null primary key,
-nm_nacionalidade varchar(60),
+nm_nacionalidade varchar(60)
+);
+
+drop table if exists nacionalidade_jogador;
+create table nacionalidade_jogador
+(fk_nacionalidade int not null,
 fk_jogador int not null,
+primary key (fk_nacionalidade, fk_jogador),
+foreign key (fk_nacionalidade) references nacionalidade(id_nacionalidade),
+foreign key (fk_jogador) references jogador(id_jogador)
+);
+
+drop table if exists nacionalidade_tecnico;
+create table nacionalidade_tecnico
+(fk_nacionalidade int not null,
 fk_tecnico int not null,
-foreign key (fk_jogador) references jogador(id_jogador),
+primary key(fk_nacionalidade,fk_tecnico),
+foreign key (fk_nacionalidade) references nacionalidade(id_nacionalidade),
 foreign key (fk_tecnico) references tecnico(id_tecnico)
 );
 

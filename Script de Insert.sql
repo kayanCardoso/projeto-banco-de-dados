@@ -53,12 +53,23 @@ insert jogador(id_jogador, nome) values
     (50, 'Bruno Silva Lima'),
     (51, 'Felipe Costa Almeida');
 
+/*Tecnicos*/
+insert into tecnico (id_tecnico, nome, dt_nasc, pais_nasc,foto)values
+	(1, 'João Silva', '1990-05-15', 'Brasil', null),
+    (2, 'Pedro Pereira', '1993-03-10', 'Espanha', null),
+    (3, 'Carlos Fernandes', '1988-07-05', 'brasil', null),
+    (4, 'Ricardo Costa', '1997-09-25', 'Alemanha', null),
+    (5, 'António Almeida', '1986-06-07', 'Portugal', null),
+    (6, 'Gustavo Santos', '1994-07-03', 'Espanha', null),
+    (7, 'André Silva', '1996-10-08', 'brasil', null),
+    (8, 'Tiago Pereira', '1992-09-13', 'Alemanha', null);
+
 
 /*Campeonatos */
 insert into campeonato (id_campeonato,tipo_campeonato, ano, nome) values
 (1000, 'Nacional', 2023, 'Brasileirao'),
 (2000, 'Nacional', 2022, 'Brasileirao'),
-(3000, 'Nacional', 2020, 'Brasileirao'),
+(3000, 'Nacional', 2021, 'Brasileirao'),
 (1100, 'Nacional', 2023, 'Copa do brasil'),
 (2100, 'Nacional', 2022, 'Copa do brasil'),
 (3100, 'Nacional', 2021, 'Copa do brasil'),
@@ -67,43 +78,30 @@ insert into campeonato (id_campeonato,tipo_campeonato, ano, nome) values
 (2300, 'estadual', 2022, 'campeonato carioca'),
 (3300, 'estadual', 2021, 'campeonato carioca');
 
-/*Tecnicos*/
-insert into tecnico (id_tecnico, nome, dt_nasc, pais_nasc,foto)values
-	(1, 'João Silva', '1990-05-15', 'Brasil', null),
-    (2, 'Maria Santos', '1985-08-22', 'Portugal', null),
-    (3, 'Pedro Pereira', '1993-03-10', 'Espanha', null),
-    (4, 'Ana Oliveira', '1982-11-30', 'Itália', null),
-    (5, 'Carlos Fernandes', '1988-07-05', 'brasil', null),
-    (6, 'Sofia Rodrigues', '1995-02-18', 'França', null),
-    (7, 'Ricardo Costa', '1997-09-25', 'Alemanha', null),
-    (8, 'Luísa Mendes', '1991-04-12', 'brasil', null),
-    (9, 'António Almeida', '1986-06-07', 'Portugal', null),
-    (10, 'Isabel Ferreira', '1989-01-20', 'Brasil', null),
-    (11, 'Gustavo Santos', '1994-07-03', 'Espanha', null),
-    (12, 'Mariana Vieira', '1983-12-15', 'Itália', null),
-    (13, 'André Silva', '1996-10-08', 'brasil', null),
-    (14, 'Lúcia Costa', '1987-03-28', 'França', null),
-    (15, 'Tiago Pereira', '1992-09-13', 'Alemanha', null);
 
 /*Classificaçao*/
-insert into classificacao (id_campeonato, posicao, quantidade_partidas, pontos, num_derrotas, num_vitoria, num_empates, gols_pro, gols_contra) values
-(1000, 1, 24, 51, 5, 16, 5, 39, 18),
-(2000, 11, 38, 53, 15, 15, 8, 41, 43),
-(3000, 20, 38, 27, 21, 5, 12, 23, 62 ),
-(1100, null, 6, null, 1, 5, 0, 13 , 5),
-(2100,null, 4, null, 2, 2, 0, 6, 5 ),
-(3100,null, 2, null, 0,1,1,6,1),
-(1200,null, 12, null, 1, 4, 7,17,10);
+insert into classificacao (id_campeonato, posicao, quantidade_partidas, pontos, fase, num_derrotas, num_vitoria, num_empates, gols_pro, gols_contra) values
+(1000, 1, 24, 51,null, 0, 0, 0, 0, 0),
+(2000, 11, 38, 53,null, 0, 0, 0, 0, 0),
+(3000, 20, 38, 27,null, 0, 0, 0, 0, 0 ),
+(1100, null, 6, null,'Terceira fase', 0, 0,0, 0 , 0),
+(2100,null, 12, null,'Final', 0, 0, 0, 0, 0 ),
+(3100,null, 12, null,'Final', 0,0,0,0,0),
+(1200,null, 15, null,'Final', 0, 0, 0,0,0),
+(1300,null,15,null,'final',0,0,0,0,0),
+(2300,null,13,null,'Semifinal',0,0,0,0,0),
+(3300,null,13,null,'semifinal',0,0,0,0,0);
 
 
 
 /*Titulos Ganhos*/
 insert into titulo (id_titulo,nome,ano,fk_campeonato)values
-(1, 'Campeao Brasileiro', 2023,1000),
-(2, 'Campeao Brasileiro', 2022,2000),
-(3, 'Campeao Copa do Brasil', 2021,3100),
-(4, 'Campeao Copa do Brasil', 2022,2100),
-(5, 'Campeao Sul-Americano', 2023,1200);
+(1, 'Campeao Brasileiro', 2023, 1000),
+(2, 'Campeao Brasileiro', 2022, 2000),
+(3, 'Campeao Copa do Brasil', 2021, 3100),
+(4, 'Campeao Copa do Brasil', 2022, 2100),
+(5, 'Campeao Sul-Americano', 2023, 1200),
+(6, 'Campeao Carioca', 2021, 1300);
 
 /*Historico Jogador*/
 insert into historico_jogador (fk_jogador, dt_contratacao, dt_fimcontrato, num_assistencia, num_gols, num_jogos, num_titulo,foto) values
@@ -178,7 +176,60 @@ insert into nacionalidade (id_nacionalidade, nm_nacionalidade) values
 /*Caracteristica Jogador*/
 
 insert into caracteristica_jogador (id_jogador, valor_mercado, pais_nasc, dt_nasc, posicao, pe_bom, altura)values
-(1,'€ 20.229.993,00','Uruguai',	'1993-07-17','atacante','Ambidestro',1.95);
+(1," €  20,229,993.00 ","Uruguai","1993-07-17","atacante","Ambidestro",1.95),
+(2," €  33,779,970.00 ","Mexico","1984-12-09","lateral","Ambidestro",1.95),
+(3," €  48,174,129.00 ","Chile","1986-07-18","zagueiro","Direito",1.61),
+(4," €  7,127,216.00 ","Argentina","1997-06-06","lateral","Esquerdo",1.91),
+(5," €  42,926,824.00 ","Mexico","1991-11-24","ponta","Ambidestro",1.62),
+(6," €  8,328,132.00 ","Chile","2002-08-19","ponta","Esquerdo",1.83),
+(7," €  2,447,959.00 ","Brasil","1997-03-14","atacante","Direito",1.74),
+(9," €  9,867,055.00 ","Uruguai","1988-01-09","lateral","Esquerdo",1.90),
+(10," €  47,076,367.00 ","Chile","1984-10-20","centro avante","Ambidestro",1.73),
+(11," €  42,026,713.00 ","Espanha","1997-01-01","centro avante","Esquerdo",1.83),
+(12," €  24,053,426.00 ","Italia","1989-12-24","ponta","Direito",1.9),
+(13," €  43,478,849.00 ","Mexico","1990-03-17","ponta","Ambidestro",1.61),
+(14," €  5,061,718.00 ","Uruguai","1997-10-08","goleiro","Direito",1.71),
+(15," €  37,212,786.00 ","Inglaterra","1995-12-24","zagueiro","Ambidestro",1.90),
+(16," €  34,276,718.00 ","Uruguai","1997-02-15","meia","Direito",1.73),
+(17," €  20,218,254.00 ","França","1990-01-29","lateral","Direito",1.64),
+(18," €  25,867,975.00 ","Inglaterra","1994-05-04","zagueiro","Ambidestro",1.71),
+(19," €  34,109,129.00 ","Chile","1984-05-31","volante","Direito",1.80),
+(20," €  20,755,379.00 ","Espanha","1997-05-28","goleiro","Ambidestro",1.72),
+(21," €  36,879,429.00 ","Uruguai","2003-12-13","volante","Esquerdo",1.61),
+(22," €  39,231,717.00 ","Portugal","1990-09-28","volante","Direito",1.80),
+(23," €  39,287,316.00 ","Argentina","2000-06-27","zagueiro","Direito",1.64),
+(24," €  25,643,493.00 ","Mexico","2001-04-26","atacante","Esquerdo",1.70),
+(25," €  24,726,917.00 ","Espanha","1994-01-18","meia","Direito",1.95),
+(26," €  1,149,289.00 ","Argentina","1987-10-23","lateral","Direito",1.95),
+(27," €  34,075,175.00 ","Italia","1983-07-02","volante","Ambidestro",1.70),
+(28," €  7,155,724.00 ","Chile","1993-05-24","lateral","Direito",1.63),
+(29," €  16,591,844.00 ","Inglaterra","1993-12-21","zagueiro","Esquerdo",1.63),
+(30," €  48,753,011.00 ","Italia","1990-08-23","centro avante","Ambidestro",1.70),
+(31," €  38,676,015.00 ","França","2000-06-20","zagueiro","Ambidestro",1.92),
+(32," €  33,002,188.00 ","França","1984-08-02","volante","Esquerdo",1.62),
+(33," €  40,203,431.00 ","Colombia","2003-03-17","lateral","Esquerdo",1.93),
+(34," €  38,719,435.00 ","Chile","1989-09-17","atacante","Esquerdo",1.74),
+(35," €  9,706,779.00 ","Mexico","2002-08-13","centro avante","Direito",1.61),
+(36," €  11,634,102.00 ","Argentina","1995-02-05","goleiro","Esquerdo",1.62),
+(37," €  14,970,864.00 ","Brasil","1983-02-09","goleiro","Direito",1.65),
+(38," €  12,148,783.00 ","Argentina","1989-05-02","atacante","Direito",1.70),
+(39," €  30,806,956.00 ","Uruguai","1994-10-02","atacante","Direito",1.93),
+(40," €  28,984,111.00 ","Chile","1987-06-09","lateral","Direito",1.64),
+(41," €  29,791,155.00 ","Chile","1989-12-29","volante","Ambidestro",1.71),
+(42," €  26,230,086.00 ","Inglaterra","2000-10-18","volante","Esquerdo",1.73),
+(43," €  17,083,298.00 ","Espanha","2002-05-07","meia","Esquerdo",1.65),
+(44," €  6,773,685.00 ","Uruguai","1993-07-18","ponta","Ambidestro",1.71),
+(45," €  29,391,929.00 ","Italia","1998-01-27","meia","Ambidestro",1.90),
+(46," €  5,100,368.00 ","Brasil","1986-03-11","meia","Direito",1.84),
+(47," €  40,762,702.00 ","Mexico","2003-02-08","ponta","Ambidestro",1.75),
+(48," €  12,955,626.00 ","França","1996-09-13","lateral","Ambidestro",1.85),
+(49," €  33,169,744.00 ","Mexico","1987-08-31","zagueiro","Direito",1.95),
+(50," €  27,629,793.00 ","Colombia","2001-03-15","zagueiro","Ambidestro",1.83),
+(51," €  24,163,185.00 ","Uruguai","1998-02-12","lateral","Ambidestro",1.93);
+
+
+
+
 
 
 

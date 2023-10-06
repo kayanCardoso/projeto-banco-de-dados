@@ -26,7 +26,6 @@ create table jogador
  foto text 
  );
 
-drop table if exists camisa;
 
 drop table if exists jogo;
 create table jogo 
@@ -37,10 +36,7 @@ estadio varchar(80) not null,
 data_jogo date not null,
 tipo_participante enum('Mandante','Visitante') not null,
 cidade varchar(100) not null,
-estado varchar(100) not null,
 pais varchar(100) not null,
-historico binary not null,
-contexto_jogo text,
 gols_pro tinyint not null,
 gols_contra tinyint not null,
 foreign key (fk_campeonato) references campeonato(id_campeonato)
@@ -92,19 +88,19 @@ valor_mercado varchar(60) not null,
 pais_nasc varchar(80) not null,
 dt_nasc date not null,
 posicao varchar(50) not null,
-pe_bom enum('Esquerdo','Direito','ambidestro'),
+pe_bom enum('Esquerdo','Direito','ambidestro') not null,
  altura float(3,2) not null,
  foreign key (id_jogador) references jogador(id_jogador)
 );
 
 drop table if exists tecnico_campeonato;
 create table tecnico_campeonato
-(dt_entrada date not null primary key,
-dt_saida date,
+(dt_entrada date not null ,
 id_tecnico int not null,
 id_campeonato int not null,
 foreign key (id_tecnico) references tecnico(id_tecnico),
-foreign key (id_campeonato) references campeonato(id_campeonato)
+foreign key (id_campeonato) references campeonato(id_campeonato),
+primary key (id_tecnico, id_campeonato, dt_entrada)
 );
 
 drop table if exists jogador_campeonato;
@@ -129,7 +125,7 @@ foreign key (id_titulo) references titulo(id_titulo)
 drop table if exists nacionalidade;
 create table nacionalidade
 (id_nacionalidade int not null primary key,
-nm_nacionalidade varchar(60)
+nm_nacionalidade varchar(60) not null	
 );
 
 drop table if exists nacionalidade_jogador;

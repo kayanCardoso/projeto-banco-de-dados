@@ -171,7 +171,8 @@ insert into nacionalidade (id_nacionalidade, nm_nacionalidade) values
 (9,'francês'),
 (10,'italiano'),
 (11,'mexicano'),
-(12,'inglês');
+(12,'inglês'),
+(13,'alemão');
 
 /*Caracteristica Jogador*/
 
@@ -226,6 +227,105 @@ insert into caracteristica_jogador (id_jogador, valor_mercado, pais_nasc, dt_nas
 (49," €  33,169,744.00 ","Mexico","1987-08-31","zagueiro","Direito",1.95),
 (50," €  27,629,793.00 ","Colombia","2001-03-15","zagueiro","Ambidestro",1.83),
 (51," €  24,163,185.00 ","Uruguai","1998-02-12","lateral","Ambidestro",1.93);
+
+/*Historico_tecnico*/
+insert into historico_tecnico (id_tecnico, num_partidas,num_vitorias,num_derrotas,num_empates) values
+(1,0,0,0,0),
+(2,0,0,0,0),
+(3,0,0,0,0),
+(4,0,0,0,0),
+(5,0,0,0,0),
+(6,0,0,0,0),
+(7,0,0,0,0),
+(8,0,0,0,0);
+
+select * from tecnico;
+select * from nacionalidade;
+
+/*Nacionalidade dos Tecnicos*/
+insert into nacionalidade_tecnico (fk_tecnico,fk_nacionalidade) values
+(1,1),
+(1,2),
+(2,4),
+(3,1),
+(3,4),
+(4,13),
+(4,1),
+(5,2),
+(6,4),
+(6,2),
+(7,1),
+(8,13),
+(8,2),
+(8,3);
+
+select id_jogador,pais_nasc from caracteristica_jogador;
+select * from nacionalidade;
+
+/*Nacionalidade dos Jogadores*/
+insert into nacionalidade_jogador(fk_jogador,fk_nacionalidade) values
+(1,7),
+(2,11),
+(3,8),
+(4,3),
+(4,6),
+(5,11),
+(6,8),
+(7,1),
+(9,7),
+(10,8),
+(11,4),
+(12,6),
+(12,1),
+(13,11),
+(14,7),
+(15,12),
+(16,7),
+(17,9),
+(18,12),
+(19,8),
+(20,4),
+(21,7),
+(21,4),
+(22,2),
+(22,1),
+(23,3),
+(23,11),
+(24,11),
+(25,4),
+(26,3),
+(27,6),
+(28,8),
+(28,2),
+(29,12),
+(30,10),
+(31,9),
+(31,10),
+(32,9),
+(33,5),
+(34,8),
+(35,11),
+(36,3),
+(36,2),
+(37,1),
+(38,3),
+(39,7),
+(40,8),
+(41,8),
+(42,12),
+(42,1),
+(43,4),
+(44,7),
+(45,10),
+(46,1),
+(47,11),
+(48,9),
+(49,11),
+(50,5),
+(51,7);
+
+
+
 
 
 

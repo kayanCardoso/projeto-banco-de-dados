@@ -134,7 +134,7 @@ create table nacionalidade_jogador
 fk_jogador int not null,
 primary key (fk_nacionalidade, fk_jogador),
 foreign key (fk_nacionalidade) references nacionalidade(id_nacionalidade),
-foreign key (fk_jogador) references jogador(id_jogador)
+foreign key (fk_jogador) references caracteristica_jogador(id_jogador)
 );
 
 drop table if exists nacionalidade_tecnico;

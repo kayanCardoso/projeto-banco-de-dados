@@ -324,24 +324,56 @@ insert into nacionalidade_jogador(fk_jogador,fk_nacionalidade) values
 (50,5),
 (51,7);
 
+/*tecnicos do campeonato*/
 
+select * from campeonato;
+select nome from tecnico;
+insert into tecnico_campeonato (dt_entrada, id_tecnico, id_campeonato) values
+('2020-05-01',1,3000),
+('2020-05-01',1,3100),
+('2020-05-01',1,3300),
+('2021-04-16',2,3000),
+('2021-04-16',2,3100),
+('2021-04-16',2,3300),
+('2021-06-07',3,3000),
+('2021-06-07',3,3100),
+('2021-06-07',3,3300),
+('2022-02-18',4,2000),
+('2022-02-18',4,2100),
+('2022-02-18',4,2300),
+('2022-03-09',5,2000),
+('2022-03-09',5,2100),
+('2022-03-09',5,2300),
+('2022-10-06',6,2000),
+('2022-10-06',6,2100),
+('2022-10-06',6,2300),
+('2023-01-30',7,1000),
+('2023-01-30',7,1100),
+('2023-01-30',7,1200),
+('2023-01-30',7,1300),
+('2023-06-03',8,1000),
+('2023-06-03',8,1100),
+('2023-06-03',8,1200),
+('2023-06-03',8,1300);
 
+select * from titulo;
+/*titulos e seus titulos*/
+insert into tecnico_titulo (id_tecnico, id_titulo) value
+(3,3),
+(3,6),
+(6,2),
+(6,4),
+(8,1),
+(8,5);
 
+/*Idolos*/
 
+select fk_jogador, num_gols from historico_jogador;
+select * from jogador where id_jogador = 4;
+select * from caracteristica_jogador where id_jogador=4 ;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+insert into idolo (id_idolo, fk_jogador, fk_tecnico, importancia) values
+(1,4,null,'Guilherme é o jogador do Botafogo com mais gols na historia  do botafogo  e foi importante em diversos titulos do clube '),
+(2,)
 
 

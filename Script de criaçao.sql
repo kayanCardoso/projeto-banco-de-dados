@@ -148,12 +148,13 @@ foreign key (fk_tecnico) references tecnico(id_tecnico)
 
 drop table if exists idolo;
 create table idolo
-(id_jogador int not null,
-id_tecnico int not null,
+(
+id_idolo int not null primary key ,
+fk_jogador int , 
+fk_tecnico int ,
 importancia text not null,
-primary key (id_jogador, id_tecnico),
-foreign key (id_jogador) references jogador(id_jogador),
-foreign key (id_tecnico) references tecnico(id_tecnico)
+foreign key (fk_jogador) references jogador(id_jogador),
+foreign key (fk_tecnico) references tecnico(id_tecnico)
 );
 
 drop table if exists tecnico_titulo;

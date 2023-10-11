@@ -507,11 +507,10 @@ insert into nacionalidade_jogador(fk_jogador,fk_nacionalidade) values
 (50,5),
 (51,7);
 
-<<<<<<< Updated upstream
+
 /*tecnicos do campeonato*/
 
-select * from campeonato;
-select nome from tecnico;
+
 insert into tecnico_campeonato (dt_entrada, id_tecnico, id_campeonato) values
 ('2020-05-01',1,3000),
 ('2020-05-01',1,3100),
@@ -540,7 +539,7 @@ insert into tecnico_campeonato (dt_entrada, id_tecnico, id_campeonato) values
 ('2023-06-03',8,1200),
 ('2023-06-03',8,1300);
 
-select * from titulo;
+
 /*titulos e seus titulos*/
 insert into tecnico_titulo (id_tecnico, id_titulo) value
 (3,3),
@@ -552,14 +551,15 @@ insert into tecnico_titulo (id_tecnico, id_titulo) value
 
 /*Idolos*/
 
-select fk_jogador, num_gols from historico_jogador;
-select * from jogador where id_jogador = 4;
-select * from caracteristica_jogador where id_jogador=4 ;
-
+select t.nome,count(tt.id_titulo) from tecnico as t inner join tecnico_titulo as tt on t.id_tecnico =  tt.id_tecnico group by t.nome;
+select id_tecnico from tecnico where nome = 'tiago pereira';
+select * from historico_jogador where fk_jogador = 44 ;
 insert into idolo (id_idolo, fk_jogador, fk_tecnico, importancia) values
 (1,4,null,'Guilherme é o jogador do Botafogo com mais gols na historia  do botafogo  e foi importante em diversos titulos do clube '),
-(2,)
-=======
+(2,25,null, 'Diego é o jogador com mais titulos na historia do botafogo com um total de 6 em sua carreira'),
+(3,null,8, 'Tiago é o atual tecnico do Botafogo ele já acumula dois titulos e foi responsavel por amenizar o clima tenso dentro do clube'),
+(4,44,null, 'Jogador com mais jogos na historia do Botafogo com o total da 641 jogos oficias e também é o jogador com mais assistencias no clube com o total de 468');
+
 /*Atuação de jogadores por campeonato*/
 
 insert into jogador_campeonato (id_jogador,id_campeonato) values
@@ -1074,6 +1074,5 @@ insert into jogador_titulo(id_jogador,id_titulo)values
 
 
 
->>>>>>> Stashed changes
 
 

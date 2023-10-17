@@ -1,3 +1,4 @@
+use db_botafogo;
 
 #listar todos os dados dos jogadores e respectivos historicos
 select nome, cj.*,hj.* from jogador as j inner join caracteristica_jogador as cj on j.id_jogador = cj.id_jogador
@@ -76,5 +77,12 @@ drop trigger if exists tr_atualizar_gols @
 create trigger tr_atualizar_gols after insert on jogo 
 for each row
 begin 
-if gols_pro > 0 then 
-update 
+update classificacao as c set c.gols_pro = c.gols_pro + new.gols_pro
+where id_campeonato = c.id_campeonato ;
+end @
+delimiter ;
+
+select * from classificacao ;
+insert into jogo (id_jogo, fk_campeonato,resultado,estadio,tipo_participante,data_jogo,cidade,pais,gols_pro,gols_contra)values
+(185,3300,'Empate','Nilton Santos','Mandante','2021-11-15','Rio de Janeiro','brasil', 5, 5);
+

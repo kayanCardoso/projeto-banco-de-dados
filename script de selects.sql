@@ -70,6 +70,28 @@ delimiter ;
 
 call sp_adc_historico ('2021-06-09','2025-06-05', 0,0,0,0,null,52);
 
+SET SQL_SAFE_UPDATES = 1;
+
+use db_botafogo;
+delimiter @
+drop trigger if exists tr_atualizar_gols @
+create trigger tr_atualizar_gols 
+	after insert on jogo 
+for each row
+begin 
+	declare gols_p tinyint ;
+      declare id int;
+        declare gols_c tinyint;
+    select sum(gols_pro) into  gols_p from jogo ;
+      select fk_campeonato into id from jogo ;
+        select sum(gols_contra) into  gols_c  from jogo ;
+if new.gols_pro >= 0 or new.gols_contra >= 0  then
+	update classificacao as c  set gols_pro = gols_p where c.id_campeonato = id ;
+    update classificacao as c  set gols_contra = gols_c where c.id_campeonato = id ;
+end if;
+end @
+delimiter ;
+
 
 delimiter @
 drop trigger if exists tr_atualizar_gols @
@@ -77,10 +99,23 @@ create trigger tr_atualizar_gols
 	after insert on jogo 
 for each row
 begin 
-declare gols tinyint ;
-select gols_pro into gols from jogo;
-if gols_pro >= 0 then
+	declare gols_p tinyint ;
+    declare id int;
+	select gols_pro, fk_campeonato into gols_p, id from jogo ;
+    
+if new.gols_pro >= 0 or new.gols_contra >= 0 then
+	update classificacao as c  set gols_pro = gols_p where c.id_campeonato = id ;
+end if;
+end @
+delimiter ;
 
+insert into jogo (id_jogo, fk_campeonato,resultado,estadio,tipo_participante,data_jogo,cidade,pais,gols_pro,gols_contra)values
+(185,3300,'Empate','Nilton Santos','Mandante','2021-11-15','Rio de Janeiro','brasil',5,5);
+
+
+select count(id_jogo),sum(gols_pro), fk_campeonato from jogo group by fk_campeonato ;
+
+select * from classificacao;
 
 
 

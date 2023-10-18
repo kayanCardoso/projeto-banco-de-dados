@@ -551,9 +551,7 @@ insert into tecnico_titulo (id_tecnico, id_titulo) value
 
 /*Idolos*/
 
-select t.nome,count(tt.id_titulo) from tecnico as t inner join tecnico_titulo as tt on t.id_tecnico =  tt.id_tecnico group by t.nome;
-select id_tecnico from tecnico where nome = 'tiago pereira';
-select * from historico_jogador where fk_jogador = 44 ;
+
 insert into idolo (id_idolo, fk_jogador, fk_tecnico, importancia) values
 (1,4,null,'Guilherme é o jogador do Botafogo com mais gols na historia  do botafogo  e foi importante em diversos titulos do clube '),
 (2,25,null, 'Diego é o jogador com mais titulos na historia do botafogo com um total de 6 em sua carreira'),

@@ -1,11 +1,10 @@
 use db_botafogo;
-
 #listar todos os dados dos jogadores e respectivos historicos
 select nome, cj.*,hj.* from jogador as j inner join caracteristica_jogador as cj on j.id_jogador = cj.id_jogador
 inner join historico_jogador as hj on j.id_jogador = hj.fk_jogador;
 
 #listar o time, campeonato e classificação
-select nome, cl.* from campeonato as c inner join classificacao as cl on c.id_campeonato = cl.id_campeonato; 
+select c.nome,c.ano, cl.* from campeonato as c inner join classificacao as cl on c.id_campeonato = cl.id_campeonato; 
 
 #listar jogadores, caracteristicas e respectivos titulos
 
@@ -31,7 +30,7 @@ inner join tecnico as tc on tt.id_tecnico = tc.id_tecnico;
 
 #listar dados do jogo que teve o maior numero de gols
 
-select * from jogo where gols_contra = 5 and gols_pro = 5;
+select * from jogo where gols_contra = (select max(gols_contra) from jogo) and gols_pro = (select max(gols_pro) from jogo);
 
 #listar todos os jogadores que estão jogando ou jogaram o campeonato sul-americano
 
@@ -74,15 +73,14 @@ call sp_adc_historico ('2021-06-09','2025-06-05', 0,0,0,0,null,52);
 
 delimiter @
 drop trigger if exists tr_atualizar_gols @
-create trigger tr_atualizar_gols after insert on jogo 
+create trigger tr_atualizar_gols 
+	after insert on jogo 
 for each row
 begin 
-update classificacao as c set c.gols_pro = c.gols_pro + new.gols_pro
-where id_campeonato = c.id_campeonato ;
-end @
-delimiter ;
+declare gols tinyint ;
+select gols_pro into gols from jogo;
+if gols_pro >= 0 then
 
-select * from classificacao ;
-insert into jogo (id_jogo, fk_campeonato,resultado,estadio,tipo_participante,data_jogo,cidade,pais,gols_pro,gols_contra)values
-(185,3300,'Empate','Nilton Santos','Mandante','2021-11-15','Rio de Janeiro','brasil', 5, 5);
+
+
 

@@ -79,15 +79,9 @@ create trigger tr_atualizar_gols
 	after insert on jogo 
 for each row
 begin 
-	declare gols_p tinyint ;
-      declare id int;
-        declare gols_c tinyint;
-    select sum(gols_pro) into  gols_p from jogo ;
-      select fk_campeonato into id from jogo ;
-        select sum(gols_contra) into  gols_c  from jogo ;
 if new.gols_pro >= 0 or new.gols_contra >= 0  then
-	update classificacao as c  set gols_pro = gols_p where c.id_campeonato = id ;
-    update classificacao as c  set gols_contra = gols_c where c.id_campeonato = id ;
+	update classificacao as c  set gols_pro = gols_pro + new.gols_pro where c.id_campeonato = new.fk_campeonato ;
+    update classificacao as c  set gols_contra = gols_contra + new.gols_contra where c.id_campeonato = new.fk_campeonato ;
 end if;
 end @
 delimiter ;
